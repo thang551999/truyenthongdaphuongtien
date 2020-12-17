@@ -22,7 +22,7 @@ app.get("/upload", function (req, res) {
 });
 
 //serve out any static files in our public HTML folder
-app.use("/uploads", express.static("public"));
+app.use("/", express.static("public"));
 
 //makes the app listen for requests on port 3000
 app.listen(3000, function () {
