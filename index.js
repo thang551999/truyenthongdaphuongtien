@@ -13,9 +13,7 @@ app.post("/upload", upload.single("soundBlob"), function (req, res, next) {
     Buffer.from(new Uint8Array(req.file.buffer))
   ); // write the blob to the server as a file
   // res.sendStatus(200); //send back that everything went ok
-  res.send(
-    "http://13.58.205.142:3000/uploads/uploads/" + req.file.originalname
-  );
+  res.send("http://13.58.205.142:3000/uploads/" + req.file.originalname);
 });
 app.get("/upload", function (req, res) {
   res.sendFile(__dirname + "/upload.html");
