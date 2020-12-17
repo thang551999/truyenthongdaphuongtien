@@ -8,12 +8,17 @@ app.post("/upload", upload.single("soundBlob"), function (req, res, next) {
   console.log(req.file); // see what got uploaded
 
   let uploadLocation = __dirname + "/public/uploads/" + req.file.originalname; // where to save the file to. make sure the incoming name has a .wav extension
-
   fs.writeFileSync(
     uploadLocation,
     Buffer.from(new Uint8Array(req.file.buffer))
   ); // write the blob to the server as a file
-  res.sendStatus(200); //send back that everything went ok
+  // res.sendStatus(200); //send back that everything went ok
+  res.send(
+    "http://13.58.205.142:3000/uploads/uploads/" + req.file.originalname
+  );
+});
+app.get("/upload", function (req, res) {
+  res.sendFile(__dirname + "/upload.html");
 });
 
 //serve out any static files in our public HTML folder
